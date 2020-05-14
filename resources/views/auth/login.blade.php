@@ -58,7 +58,7 @@
                         <a class="btn btn-link" href="{{ route('password.request') }}">
                             {{ __('Forgot Your Password?') }}
                         </a>
-                    </p>                          
+                    </p>
                     @endif
                 </div>
                 <!-- /.login-card-body -->

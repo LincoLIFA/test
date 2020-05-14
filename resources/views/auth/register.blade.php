@@ -57,6 +57,21 @@
                     <span class="fas fa-lock"></span>
                     </div>
                 </div>
+				</div>
+				<!-- Asignacion de Rol dentro de la plataforma -->
+				<div class="form-group clearfix">
+                    <div class="icheck-success d-inline">
+                        <input type="radio" name="rol" value="0" id="radioSuccess1">
+                        <label for="radioSuccess1">
+						Especialista
+						</label>
+                    </div>
+                    <div class="icheck-success d-inline">
+                        <input type="radio" name="rol" value="1" id="radioSuccess2">
+                        <label for="radioSuccess2">
+						 	Paciente
+                        </label>
+                    </div>
                 </div>
                 <div class="row">
                 <div class="col-8">
@@ -74,7 +89,7 @@
                     </button>
                 </div>
                 <!-- /.col -->
-                </div>
+				</div>
             </form>
         </div>
             <!-- /.form-box -->
