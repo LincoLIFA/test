@@ -26,7 +26,7 @@ class EspecialistaController extends Controller
     public function index()
     {
         $rol = $this->getRolUser();
-        return view('home', ['rol' => $rol]);
+        return view('index', ['rol' => $rol]);
     }
 
     /**
