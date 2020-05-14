@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'El correo o contraseña son incorrectos',
+    'failed' => 'El correo o contraseña son incorrectos.',
     'throttle' => 'Demaciados intentos de ingreso. Intentalo dentro de: seconds seconds.',
 
 ];
