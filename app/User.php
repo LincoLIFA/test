@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+
     use Notifiable;
 
     /**
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'rol'
     ];
 
     /**
@@ -36,4 +37,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Define la variable Rol de Especialista
+     * @var string
+     */
+    protected $especialista = "Especialista";
+
+    /**
+     * Define la variable Rol de Paciente
+     * @var string
+     */
+    protected $paciente = "Paciente";
 }
