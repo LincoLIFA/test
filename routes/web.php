@@ -23,7 +23,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth', 'CheckRol');
 
 
+Route::get('/Lobby/Specialist', 'EspecialistaController@index')->name('lobbyEspecialista')->middleware('auth', 'ValidateSpecialist');
 
-Route::get('/linco', 'EspecialistaController@index')->name('lobbyEspecialista')->middleware('auth', 'ValidateSpecialist');
-
-Route::get('/Pedro', 'PacienteController@index')->name('lobbyPaciente')->middleware('auth', 'ValidatePatient');
+Route::get('/Lobby/Patient', 'PacienteController@index')->name('lobbyPaciente')->middleware('auth', 'ValidatePatient');

@@ -8,6 +8,7 @@ class ValidateSpecialist extends CheckRol
 {
     /**
      * Handle an incoming request.
+     * Comprueba que el usuario que trata de acceder a la ruta sea un Specialist
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next

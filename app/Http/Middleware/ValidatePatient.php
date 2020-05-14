@@ -8,7 +8,7 @@ class ValidatePatient extends CheckRol
 {
     /**
      * Handle an incoming request.
-     *
+     * Comprueba que el usuario que trata de acceder a la ruta sea un Patient
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
      * @return mixed

@@ -25,6 +25,7 @@ class CheckRol
 
 	/**
 	 * Handle an incoming request.
+	 * Comprueba el Tipo de Rol del usuario y redirecciona al controllador correspondiente.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @param  \Closure  $next
