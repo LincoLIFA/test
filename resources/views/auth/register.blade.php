@@ -74,21 +74,17 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-md-12">
                                 <div class="icheck-primary">
                                     <input type="checkbox" id="agreeTerms" name="terms" value="agree">
                                     <label for="agreeTerms">
-                                        Acepta los <a href="#">terminos</a>
+                                        Acepta los <a href="#">terminos de contrato</a>
                                     </label>
                                 </div>
                             </div>
-                            <!-- /.col -->
-                            <div class="col-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                            <!-- /.col -->
+                            <button type="submit" class="btn btn-outline-primary btn-block">
+                                {{ __('Register') }}
+                            </button>
                         </div>
                     </form>
                 </div>

@@ -36,7 +36,7 @@
                             @enderror
                         </div>
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-md-12">
                                 <div class="icheck-primary">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                     <label for="remember">
@@ -44,19 +44,15 @@
                                     </label>
                                 </div>
                             </div>
-                            <!-- /.col -->
-                            <div class="col-4">
-                                <button type="submit" class="btn btn-primary btn-block">
-                                    {{ __('Login') }}
-                                </button>
-                            </div>
-                            <!-- /.col -->
+                            <button type="submit" class="mt-1 btn btn-outline-primary btn-block">
+                                {{ __('Login') }}
+                            </button>
                         </div>
                     </form>
                     @if (Route::has('password.request'))
                     <p class="mb-1">
                         <a class="btn btn-link" href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
+                            {{ __('¿Olvidaste tu contraseña?') }}
                         </a>
                     </p>
                     @endif
