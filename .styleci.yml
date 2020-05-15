@@ -11,3 +11,7 @@ js:
     not-name:
       - webpack.mix.js
 css: true
+
+nombre: PHP Lint
+usos: michaelw90/PHP-Lint@1.0.0
+
