@@ -1,25 +1,12 @@
-name: CI
+name: PHP Linting
 
-on:
-  pull_request:
-    branches:
-      - master
+on: pull_request
 
 jobs:
-  isValidPHP:
-    runs-on: [ubuntu-latest]
-    name: Lint-PHP
+  phplint:
+
+    runs-on: ubuntu-latest
+
     steps:
-      - name: PHP Syntax Checker (Lint)
-        uses: StephaneBour/actions-php-lint@7.0
-  phpcs:
-    runs-on: [ubuntu-latest]
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
-    - uses: docker://rtcamp/action-phpcs-code-review:v2.0.0
-      env:
-        GH_BOT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
-      with:
-        args: "PSR12"
+        - uses: actions/checkout@v1
+        - uses: michaelw90/PHP-Lint@mas
