@@ -80,6 +80,8 @@
             </main>
         </div>
     </div>
+
+
     <!-- jQuery -->
     <script src="{{ asset('style/plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->

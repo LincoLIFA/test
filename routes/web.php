@@ -18,11 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth', 'CheckRol');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth', 'CheckRol', 'verified');
 
+Route::get('/Lobby/Specialist', 'EspecialistaController@index')->name('lobbyEspecialista')->middleware('auth', 'ValidateSpecialist', 'verified');
 
-Route::get('/Lobby/Specialist', 'EspecialistaController@index')->name('lobbyEspecialista')->middleware('auth', 'ValidateSpecialist');
-
-Route::get('/Lobby/Patient', 'PacienteController@index')->name('lobbyPaciente')->middleware('auth', 'ValidatePatient');
+Route::get('/Lobby/Patient', 'PacienteController@index')->name('lobbyPaciente')->middleware('auth', 'ValidatePatient', 'verified');
