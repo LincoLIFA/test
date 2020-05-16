@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Profile;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\User_profile;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -72,15 +74,29 @@ class RegisterController extends Controller
             $rol = "Paciente";
         }
 
-        return User::create([
+        $user = User::create([
             'name'     => $data['name'],
             'email'    => $data['email'],
             'password' => Hash::make($data['password']),
             'rol'      => $rol,
         ]);
-        // Envia el correo de confirmacion
-        Mail::send('emails.confirmation_user', $data, function ($message) use ($data) {
-            $message->to($data['email'], $data['name'])->subject('Por favor confirma tu correo');
-        });
+        $this->assignProfile($user);
+        return $user;
+    }
+
+
+    /**
+     * Asigna el perfil del usuario
+     * @param object $user
+     */
+    protected function assignProfile($user)
+    {
+        $rolUser = $user->rol;
+        $profile = Profile::where('name', $rolUser)->first();
+
+        return User_profile::create([
+            'user_id' => $user->id,
+            'profile_id' => $profile->id
+        ]);
     }
 }

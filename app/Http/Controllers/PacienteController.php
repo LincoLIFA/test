@@ -6,7 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class PacienteController extends Controller
+class PacienteController extends UserController
 {
     /**
      * Create a new controller instance.
@@ -16,18 +16,5 @@ class PacienteController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-
-
-        $rol = $this->getRolUser();
-        return view('index', ['rol' => $rol]);
     }
 }

@@ -11,6 +11,18 @@ class User extends Authenticatable implements MustVerifyEmail
     use Notifiable;
 
     /**
+     * Declara el rol del Especialista
+     * @var string
+     */
+    protected $especialista = "Especialista";
+
+    /**
+     * Declara el rol del Paciente
+     * @var string
+     */
+    protected $paciente = "Paciente";
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

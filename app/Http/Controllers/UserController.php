@@ -24,7 +24,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        return route('home');
+        $idLoggedIn = auth()->id();
+        $user = User::find($idLoggedIn);
+        $profile = $user->profile()->get();
+        $tag = $profile->first()->tag;
+
+        $rol = $this->getRolUser();
+        return view('index', ['rol' => $rol, 'tag' => $tag]);
     }
 
     /**
