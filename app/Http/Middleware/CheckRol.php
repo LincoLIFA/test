@@ -11,19 +11,6 @@ use App\Http\Controllers\PacienteController;
 class CheckRol
 {
 	/**
-	 * Declara el rol del Especialista
-	 * @var string
-	 */
-	protected $especialista = "Especialista";
-
-	/**
-	 * Declara el rol del Paciente
-	 * @var string
-	 */
-	protected $paciente = "Paciente";
-
-
-	/**
 	 * Handle an incoming request.
 	 * Comprueba el Tipo de Rol del usuario y redirecciona al controllador correspondiente.
 	 *
@@ -34,24 +21,36 @@ class CheckRol
 	 */
 	public function handle($request, Closure $next)
 	{
-		$rolOfUser = $this->getRolUser();
-		if ($rolOfUser === $this->especialista) {
-			return redirect()->action([EspecialistaController::class, 'index']);
-		} elseif ($rolOfUser === $this->paciente) {
-			return redirect()->action([PacienteController::class, 'index']);
+		$uid = auth()->id();
+		$rolOfUser = $this->getRolUser($uid);
+		$uProfile = $this->getProfileUser($uid);
+
+		if ($rolOfUser === $uProfile) {
+			return redirect()->route($uProfile);
 		}
 		return $next($request);
 	}
 
 	/**
-	 * Devuelve el rol del usuario para el middleware
+	 * Devuelve el perfil del usuario para el middleware
+	 * @param int $uid
 	 * @return string
 	 */
-	public function getRolUser(): string
+	protected function getRolUser(int $uid): string
 	{
-		$idLoggedIn = auth()->id();
-		$loggedinUser = User::find($idLoggedIn);
-		$rolOfUser = $loggedinUser->rol;
-		return $rolOfUser;
+		$loggedinUser = User::find($uid);
+		return $loggedinUser->rol;
+	}
+
+	/**
+	 * Obtiene el Perfil asignado al Usuario
+	 * @param int $uid
+	 * @return string
+	 */
+	protected function getProfileUser(int $uid): string
+	{
+		$user = User::find($uid);
+		$profile = $user->profile()->get();
+		return $profile->first()->name;
 	}
 }

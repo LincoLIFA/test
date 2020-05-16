@@ -20,8 +20,4 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth', 'CheckRol', 'verified');
-
-Route::get('/Lobby/Specialist', 'EspecialistaController@index')->name('lobbyEspecialista')->middleware('auth', 'ValidateSpecialist', 'verified');
-
-Route::get('/Lobby/Patient', 'PacienteController@index')->name('lobbyPaciente')->middleware('auth', 'ValidatePatient', 'verified');
+Route::get('/home', 'UserController@index')->name('home')->middleware('auth', 'verified');
