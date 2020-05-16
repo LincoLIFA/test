@@ -37,15 +37,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * Define la variable Rol de Especialista
-     * @var string
-     */
-    protected $especialista = "Especialista";
-
-    /**
-     * Define la variable Rol de Paciente
-     * @var string
-     */
-    protected $paciente = "Paciente";
+    public function profile()
+    {
+        return $this->belongsToMany('App\Profile', 'user_profiles');
+    }
 }

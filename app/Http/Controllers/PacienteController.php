@@ -25,19 +25,9 @@ class PacienteController extends Controller
      */
     public function index()
     {
+
+
         $rol = $this->getRolUser();
         return view('index', ['rol' => $rol]);
-    }
-
-    /**
-     * Devuelve el rol del usuario para el middleware
-     * @return string
-     */
-    public function getRolUser(): string
-    {
-        $idLoggedIn = auth()->id();
-        $loggedinUser = User::find($idLoggedIn);
-        $rolOfUser = $loggedinUser->rol;
-        return $rolOfUser;
     }
 }
