@@ -10,17 +10,6 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
-    /**
-     * Declara el rol del Especialista
-     * @var string
-     */
-    protected $especialista = "Especialista";
-
-    /**
-     * Declara el rol del Paciente
-     * @var string
-     */
-    protected $paciente = "Paciente";
 
     /**
      * The attributes that are mass assignable.
@@ -49,8 +38,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function profile()
+    public function modules()
     {
-        return $this->belongsToMany('App\Profile', 'user_profiles');
+        return $this->belongsToMany('App\Modules', 'user_modules');
+    }
+
+    public function pets()
+    {
+        return $this->hasMany('App\Pets', 'user_id');
     }
 }

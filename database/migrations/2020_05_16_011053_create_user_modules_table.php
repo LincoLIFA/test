@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserProfilesTable extends Migration
+class CreateUserModulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateUserProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_profiles', function (Blueprint $table) {
+        Schema::create('user_modules', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id'); // Relación con usuario
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('profile_id'); // Relación con Perfil 
-            $table->foreign('profile_id')->references('id')->on('profiles');
+            $table->unsignedBigInteger('modules_id'); // Relación con Perfil 
+            $table->foreign('modules_id')->references('id')->on('modules');
             $table->timestamps();
         });
     }

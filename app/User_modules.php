@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User_profile extends Model
+class User_modules extends Model
 {
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'profile_id'];
+    protected $fillable = ['user_id', 'modules_id'];
 
     /**
      * Asocia los los usuarios
@@ -25,8 +25,8 @@ class User_profile extends Model
     /**
      * Asocia los perfiles
      */
-    public function profile()
+    public function modules()
     {
-        return $this->belongsTo('App\Profile', 'profile_id');
+        return $this->belongsTo('App\Modules', 'modules_id');
     }
 }

@@ -4,20 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Profile extends Model
+class Type_pets extends Model
 {
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'parameters', 'tag'
+        'name', 'reference'
     ];
 
-    public function user()
+    public function pets()
     {
-        return $this->belongsToMany('App\User', 'user_profiles');
+        return $this->hasMany('App\Pets');
     }
 }

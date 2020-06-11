@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Heart') }}</title>
+  <title>{{ config('app.name', 'PetsPanel') }}</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -29,6 +29,8 @@
   <link rel="stylesheet" href="{{ asset('style/plugins/summernote/summernote-bs4.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- jQuery -->
+  <script src="{{ asset('style/plugins/jquery/jquery.min.js') }}"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -42,7 +44,7 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-
+      @yield('content')
     </div>
     <!-- /.content-wrapper -->
     <!-- Control Sidebar -->
@@ -53,8 +55,7 @@
   </div>
   <!-- ./wrapper -->
 
-  <!-- jQuery -->
-  <script src="{{ asset('style/plugins/jquery/jquery.min.js') }}"></script>
+
   <!-- jQuery UI 1.11.4 -->
   <script src="{{ asset('style/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -63,6 +64,11 @@
   </script>
   <!-- Bootstrap 4 -->
   <script src="{{ asset('style/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <!-- DataTables -->
+  <script src="{{ asset('style/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+  <script src="{{ asset('style/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+  <script src="{{ asset('style/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+  <script src="{{ asset('style/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
   <!-- ChartJS -->
   <script src="{{ asset('style/plugins/chart.js/Chart.min.js') }}"></script>
   <!-- Sparkline -->

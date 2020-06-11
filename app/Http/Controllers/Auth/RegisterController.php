@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Profile;
+use App\Modules;
 use App\Providers\RouteServiceProvider;
 use App\User;
-use App\User_profile;
+use App\User_modules;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -67,20 +67,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $rol = boolval($data['rol']) ? true : false;
-        if ($rol === false) {
-            $rol = "Especialista";
-        } elseif ($rol === true) {
-            $rol = "Paciente";
-        }
 
         $user = User::create([
             'name'     => $data['name'],
             'email'    => $data['email'],
             'password' => Hash::make($data['password']),
-            'rol'      => $rol,
+            'rol'      => 'true',
         ]);
-        $this->assignProfile($user);
+        $this->assignModule($user);
         return $user;
     }
 
@@ -89,14 +83,14 @@ class RegisterController extends Controller
      * Asigna el perfil del usuario
      * @param object $user
      */
-    protected function assignProfile($user)
+    protected function assignModule($user)
     {
-        $rolUser = $user->rol;
-        $profile = Profile::where('name', $rolUser)->first();
-
-        return User_profile::create([
-            'user_id' => $user->id,
-            'profile_id' => $profile->id
-        ]);
+        $modules = Modules::all();
+        foreach ($modules as $module) {
+            User_modules::create([
+                'user_id' => $user->id,
+                'modules_id' => $module->id
+            ]);
+        }
     }
 }

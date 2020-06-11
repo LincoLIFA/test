@@ -7,8 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Heart') }}</title>
+    <title>{{ config('app.name', 'PetsPanel') }}</title>
 
 
     <!-- Fonts -->
@@ -73,7 +72,7 @@
     <div class="hold-transition login-page">
         <div class="login-box">
             <div class="login-logo">
-                <a href="#"><b>{{ config('app.name', 'Heart') }}</b></a>
+                <a href="#"><b>{{ config('app.name', 'PetsPanel') }}</b></a>
             </div>
             <main class="py-4">
                 @yield('content')
