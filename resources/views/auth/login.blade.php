@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body login-card-body">
-                    <p class="login-box-msg">{{ __('Inicia Sesión') }}</p>
+                    <p class="login-box-msg">{{ __('Inicia Sesión') }} Hola mundo</p>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="input-group mb-3">
