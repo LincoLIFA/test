@@ -84,7 +84,7 @@
 
         <div class="content">
             <div class="title m-b-md">
-                Laravel
+                github.com/lincolifa
             </div>
 
             <div class="links">
