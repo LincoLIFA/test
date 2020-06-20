@@ -39,3 +39,7 @@ Route::get('/Pets', 'PetsController@index')->name('pet_module')->middleware('aut
 Route::put('/update/data/user', 'UserController@update')->name('updateUser')->middleware('auth', 'verified');
 
 Route::get('/Table/Owner', 'ProfileController@showOwner')->name('owner_module')->middleware('auth', 'verified');
+
+Route::get('New/Pet', 'PetsController@profilePets')->name('Profile-pets')->middleware('auth', 'verified');
+
+Route::post('New/Pets', 'PetsController@create')->name('newPets')->middleware('auth', 'verified');

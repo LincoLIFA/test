@@ -5,11 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<<<<<<< HEAD
-    <title>Test ING Y DEV</title>
-=======
     <title>Test INGYDEV</title>
->>>>>>> 91d74a961a4335cff78514c6e9b1f6b81d169775
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -88,11 +84,7 @@
 
         <div class="content">
             <div class="title m-b-md">
-<<<<<<< HEAD
-                Laravel
-=======
                 github.com/lincolifa
->>>>>>> 91d74a961a4335cff78514c6e9b1f6b81d169775
             </div>
 
             <div class="links">
