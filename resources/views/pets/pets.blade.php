@@ -26,6 +26,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
+                    <a href="{{route('Profile-pets')}}" class="btn btn-primary mr-1"> <i class="fas fa-paw"></i> Nueva Mascota</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">

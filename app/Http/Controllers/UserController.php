@@ -55,12 +55,15 @@ class UserController extends Controller
         $user = $this->getUser();
         $name = $user->name;
         $charName =  explode(' ', $name);
-        $acronym = '';
-        foreach ($charName as $row) {
-            $letter[] = $row[0];
-            strtoupper($acronym = implode('', $letter));
+        if (count($charName) > 1) {
+            $acronym = '';
+            foreach ($charName as $row) {
+                $letter[] = $row[0];
+                $acronym = strtoupper(implode('', $letter));
+            }
+            return $acronym;
         }
-        return $acronym;
+        return strtoupper($name);
     }
 
     /**

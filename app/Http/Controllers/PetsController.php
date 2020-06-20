@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Pets;
+use App\Type_pets;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,5 +48,41 @@ class PetsController extends UserController
             return 'No hay registro';
         }
         return $pets;
+    }
+
+    /**
+     * Ingresa nueva mascota al sistema 
+     * @param Request $request 
+     * @return mixed
+     */
+    public function create(Request $request)
+    {
+        $idOwner = $request->owner;
+        $user = User::find($idOwner);
+        if (!is_null($user)) {
+
+            $pet = new Pets();
+            $pet->user_id = $idOwner;
+            $pet->type_id = $request->type;
+            $pet->name = $request->name;
+            $pet->edad = $request->edad;
+            $pet->sexo = $request->sexo;
+            $pet->save();
+        }
+    }
+
+    public function profilePets()
+    {
+        $users = User::all();
+        $typePets = Type_pets::all();
+        $acronym = $this->acronymName();
+        $modules = $this->getModules();
+
+        return view('pets.new-pets', [
+            'users' => $users,
+            'type' => $typePets,
+            'acronym' => $acronym,
+            'modules' => $modules
+        ]);
     }
 }
