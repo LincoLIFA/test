@@ -1,5 +1,6 @@
 <?php
 
+use App\Pets;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,9 +20,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('user', function () {
+Route::post('users', function () {
     return User::all();
 });
+
+Route::post('pets', 'ApiController@showApiPets');
+
+Route::post('Owner/Pets', 'ApiController@showApiOwnerPets');
+
 
 Route::get('user/{id}', function ($id) {
     return User::find($id);

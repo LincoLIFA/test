@@ -62,7 +62,7 @@
                                 </td>
                                 <td>
                                     <div class="row">
-                                        <a href="#" class="btn btn-primary mr-1"> <i class="far fa-edit"></i></a>
+                                        <a href="{{route ('show_profile', $item->id)}}" class="btn btn-primary mr-1"> <i class="far fa-edit"></i></a>
                                         <form method="post" action="#">
                                             @method('DELETE')
                                             @csrf
