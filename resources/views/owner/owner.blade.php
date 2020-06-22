@@ -56,14 +56,14 @@
                                     {{$item->direccion}}
                                 </td>
                                 <td>
-                                    @foreach($pets as $pet)
-                                    {{$pet->name}}
+                                    @foreach($item->pets as $pet)
+                                    <div class="div row"><a href="{{route('show-edit-pets' , $pet->id)}}">{{$pet->name}}</a></div>
                                     @endforeach
                                 </td>
                                 <td>
                                     <div class="row">
                                         <a href="{{route ('show_profile', $item->id)}}" class="btn btn-primary mr-1"> <i class="far fa-edit"></i></a>
-                                        <form method="post" action="#">
+                                        <form method="post" action="{{route ('delete-user',$item->id)}}">
                                             @method('DELETE')
                                             @csrf
                                             <button class="btn btn-primary" type="submit"><i class="far fa-trash-alt"></i></button>

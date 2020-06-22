@@ -42,4 +42,12 @@ Route::get('/Table/Owner', 'ProfileController@showOwner')->name('owner_module')-
 
 Route::get('New/Pet', 'PetsController@profilePets')->name('Profile-pets')->middleware('auth', 'verified');
 
+Route::get('Pet/{id}', 'PetsController@showEditPets')->name('show-edit-pets')->middleware('auth', 'verified');
+
 Route::post('New/Pets', 'PetsController@create')->name('newPets')->middleware('auth', 'verified');
+
+Route::put('Pets/{id}', 'PetsController@updatePets')->name('uptade-pets')->middleware('auth', 'verified');
+
+Route::delete('Delete/Pets/{id}', 'PetsController@destroy')->name('delete-pets')->middleware('auth', 'verified');
+
+Route::delete('Delete/Owner/{id}', 'UserController@destroy')->name('delete-user')->middleware('auth', 'verified');

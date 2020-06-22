@@ -6,7 +6,6 @@ use App\Pets;
 use App\Type_pets;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class PetsController extends UserController
 {
@@ -50,6 +49,8 @@ class PetsController extends UserController
         return $pets;
     }
 
+
+
     /**
      * Ingresa nueva mascota al sistema 
      * @param Request $request 
@@ -84,5 +85,62 @@ class PetsController extends UserController
             'acronym' => $acronym,
             'modules' => $modules
         ]);
+    }
+
+    /**
+     * muestra vista de edicion de mascotas
+     * @param int $id
+     * @return view
+     */
+    public function showEditPets(int $id)
+    {
+        $pets = Pets::find($id);
+        $users = User::all();
+        $typePets = Type_pets::all();
+        $acronym = $this->acronymName();
+        $modules = $this->getModules();
+
+        return view('pets.edit-pets', [
+            'users' => $users,
+            'type' => $typePets,
+            'acronym' => $acronym,
+            'modules' => $modules,
+            'pets' => $pets
+        ]);
+    }
+
+    /**
+     * modifica registro de mascota en base de datos
+     * @param Request $request
+     * @param int $id
+     * @return route
+     */
+    public function updatePets(Request $request, int $id)
+    {
+
+        $pet = Pets::find($id);
+        $pet->user_id = $request->owner;
+        $pet->type_id = $request->type;
+        $pet->name = $request->name;
+        $pet->edad = $request->edad;
+        $pet->sexo = $request->sexo;
+        $pet->update();
+
+        return redirect()->back()->with('message', 'Cambios Guardados');
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        $pet = Pets::findOrfail($id);
+        $pet->delete();
+
+        return redirect()->back()->with('message', 'Registro eliminado');
     }
 }

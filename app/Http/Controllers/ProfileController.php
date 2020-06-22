@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Pets;
 use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
 
 class ProfileController extends UserController
 {
@@ -44,7 +40,7 @@ class ProfileController extends UserController
         $pets = [];
         foreach ($users as $user) {
             $id = $user->id;
-            $pets[$id] = $user->Pets()->get()->all();
+            $pets[$id] = $this->getPetsById($id);
         }
         $acronym = $this->acronymName();
         $modules = $this->getModules();
@@ -59,19 +55,20 @@ class ProfileController extends UserController
 
     /**
      * Retorna el perfil del dueño de una mascota
-     * @param Request $request
      * @param int $id
      * @return mixed
      */
-    public function showProfile(Request $request, int $id)
+    public function showProfile(int $id)
     {
         $acronym = $this->acronymName();
         $modules = $this->getModules();
         $user = User::find($id);
-        return view('profile.profile', [
+        $pets = $this->getPetsById($id);
+        return view('profile.edit-owner', [
             'acronym' => $acronym,
             'modules' => $modules,
-            'user' => $user
+            'user' => $user,
+            'pets' => $pets
         ]);
     }
 }
