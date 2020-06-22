@@ -78,6 +78,18 @@ class UserController extends Controller
     }
 
     /**
+     * Devuelve arreglo de mascotas disponibles
+     * @param int $id
+     * @return array $modules
+     */
+    public function getPetsById(int $id)
+    {
+        $user = User::find($id);
+        $pets = $user->Pets()->get()->all();
+        return $pets;
+    }
+
+    /**
      * Actualiza los datos del usuario
      * @param Request $request
      * @return mixed
@@ -116,5 +128,19 @@ class UserController extends Controller
         $article->delete();
 
         return response()->json(null, 204);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        $user = User::findOrfail($id);
+        $user->delete();
+
+        return redirect()->back()->with('message', 'Registro eliminado');
     }
 }

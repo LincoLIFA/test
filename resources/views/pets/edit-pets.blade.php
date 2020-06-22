@@ -25,10 +25,13 @@
                             <img class="profile-user-img img-fluid img-circle" src="{{Storage::url(auth()->user()->avatar ?? 'default.png')}}" alt="User profile picture">
                         </div>
 
-                        <h3 class="profile-username text-center">{{$pet->name ?? 'Nueva mascota' }}</h3>
-
-
-                        <a href="#" id="btn-actualizar" class="btn btn-primary btn-block"><b>Guardar</b></a>
+                        <h3 class="profile-username text-center">{{$pets->name ?? 'mascota' }}</h3>
+                        @if(session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </div>
+                        @endif
+                        <a href="#" id="btn-actualizar" class="btn btn-primary btn-block"><b>Actualizar</b></a>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -43,17 +46,18 @@
                     <div class="card-body">
                         <form class="form-horizontal" id="profile-form">
                             <div class="form-group row">
+                                @method('PUT')
                                 @csrf
                                 <label for="inputName" class="col-sm-2 col-form-label">Nombre</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="name" value="{{$pets->name ?? ''}}" placeholder="Ingrese nombre">
+                                    <input type="text" class="form-control" name="name" value="{{$pets->name ?? ''}}" placeholder="ingrese nombre">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputEmail" class="col-sm-2 col-form-label">Dueño</label>
                                 <div class="col-sm-10">
                                     <select class="form-control select2bs4" name="owner" data-placeholder="Seleccione un dueño" style="width: 100%;">
-                                        <option selected="selected">Seleccione un dueño</option>
+                                        <option selected="selected" value="{{$pets->user->id ?? ''}}">{{$pets->user->name ?? 'Not Owner'}}</option>
                                         @foreach($users as $data)
                                         <option value="{{$data->id}}">{{$data->name}}</option>
                                         @endforeach
@@ -64,7 +68,7 @@
                                 <label for="inputEmail" class="col-sm-2 col-form-label">Tipo de mascota</label>
                                 <div class="col-sm-10">
                                     <select class="form-control select2bs4" name="type" data-placeholder="Seleccione un tipo" style="width: 100%;">
-                                        <option selected="selected">Seleccione un tipo</option>
+                                        <option selected="selected" value="{{$pets->type_pets->id ?? ''}}">{{$pets->type_pets->name ?? ''}}</option>
                                         @foreach($type as $data)
                                         <option value="{{$data->id}}">{{$data->name}}</option>
                                         @endforeach
@@ -74,14 +78,14 @@
                             <div class="form-group row">
                                 <label for="inputEmail" class="col-sm-2 col-form-label">Edad</label>
                                 <div class="col-sm-10">
-                                    <input type="email" class="form-control" name="edad" value="{{$user->email ?? ''}}">
+                                    <input type="text" class="form-control" name="edad" value="{{$pets->edad ?? ''}}" placeholder="Ingrese la edad de la mascota">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputEmail" class="col-sm-2 col-form-label">Genero</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control select2bs4" name="sexo" data-placeholder="" style="width: 100%;">
-                                        <option selected="selected">Seleccione el genero</option>
+                                    <select class="form-control select2bs4" name="sexo" data-placeholder="Seleccione el genero" style="width: 100%;">
+                                        <option selected="selected" value="{{$pets->sexo ?? '' }}">{{$pets->sexo == 1 ? 'Macho' : 'Hembra'}}</option>
                                         <option value="0">Hembra</option>
                                         <option value="1">Macho</option>
                                     </select>
@@ -148,7 +152,7 @@
     $(document).ready(function() {
         $('#btn-actualizar').click(function() {
             var data = $('#profile-form').serialize();
-            var url = "{{route ('newPets')}}";
+            var url = "{{route ('uptade-pets',$pets->id)}}";
             $.ajax({
                 type: "POST",
                 url: url,

@@ -27,7 +27,13 @@
             <div class="card">
                 <div class="card-header">
                     <a href="{{route('Profile-pets')}}" class="btn btn-primary mr-1"> <i class="fas fa-paw"></i> Nueva Mascota</a>
+                    @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                    @endif
                 </div>
+
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-hover">
@@ -61,12 +67,12 @@
                                     {{$item->edad}}
                                 </td>
                                 <td>
-                                    {{$item->sexo}}
+                                    {{$item->sexo == 1 ? 'Macho' : 'Hembra'}}
                                 </td>
                                 <td>
                                     <div class="row">
-                                        <a href="#" class="btn btn-primary mr-1"> <i class="far fa-edit"></i></a>
-                                        <form method="post" action="#">
+                                        <a href="{{route('show-edit-pets', $item->id)}}" class="btn btn-primary mr-1"> <i class="far fa-edit"></i></a>
+                                        <form method="post" action="{{route('delete-pets', $item->id)}}">
                                             @method('DELETE')
                                             @csrf
                                             <button class="btn btn-primary" type="submit"><i class="far fa-trash-alt"></i></button>
